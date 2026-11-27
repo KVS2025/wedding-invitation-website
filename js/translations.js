@@ -21,7 +21,7 @@
       "couple.triya": "Triya",
       "couple.daughterOf": "Daughter of",
       "couple.triyaParents": "Sangeeta Manish Mohanlal Sheth",
-      "couple.invitation": "With the blessings of the Almighty and our beloved elders, the Sangeeta and Manish Mohanlal Sheth family warmly invites you to celebrate the beautiful union of Triya and Abhishek.",
+      "couple.invitation": "With the blessings of the Almighty and our beloved elders, the Dhanlakshmiben Mohanlal Sheth family warmly invites you to celebrate the beautiful union of Triya and Abhishek.",
       "couple.message": "Join us as two hearts come together and two families become one.",
       "couple.discover": "Discover the celebrations",
       "countdown.eyebrow": "A day to remember",
