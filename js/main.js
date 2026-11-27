@@ -110,6 +110,23 @@
   const openButton = document.querySelector("#open-invitation");
   const doorPanels = intro.querySelectorAll(".door");
   const doorLight = intro.querySelector(".door-light");
+  const invitation = document.querySelector("#invitation");
+  const openingRevealTargets = [
+    "#invitation .hero-arch",
+    "#invitation .hero-corner",
+    "#invitation .hero-bottom-mark",
+    "#invitation .hero-prayer",
+    "#invitation .gold-rule",
+    "#invitation .hero-welcome",
+    "#invitation .couple-person--left .couple-name",
+    "#invitation .couple-divider",
+    "#invitation .couple-person--right .couple-name",
+    "#invitation .parent-relation",
+    "#invitation .parent-name",
+    "#invitation .invitation-message",
+    "#invitation .hero-support",
+    "#invitation .text-link"
+  ].join(", ");
   let opened = false;
   let openingFinished = false;
 
@@ -139,21 +156,43 @@
     }
   }
 
+  function completeOpening() {
+    invitation.removeAttribute("inert");
+    document.querySelector("#couple-names").setAttribute("tabindex", "-1");
+    document.querySelector("#couple-names").focus({ preventScroll: true });
+    window.setTimeout(() => intro.remove(), 500);
+  }
+
   function finishOpening() {
     if (openingFinished) return;
     openingFinished = true;
-    document.body.classList.remove("intro-active");
-    document.querySelector("#invitation").removeAttribute("inert");
     intro.classList.add("is-gone");
     intro.setAttribute("aria-hidden", "true");
     intro.removeAttribute("role");
     intro.removeAttribute("aria-modal");
     document.querySelector("#couple-names").setAttribute("tabindex", "-1");
+
     if (window.gsap && !reducedMotion) {
-      const coupleTimeline = window.gsap.timeline();
-      coupleTimeline.fromTo(".couple-person--left .couple-name", { autoAlpha: 0, y: 16 }, {
-        autoAlpha: 1, y: 0, duration: 0.4, ease: "power2.out"
-      })
+      document.documentElement.classList.add("has-gsap");
+      window.gsap.set(openingRevealTargets, { autoAlpha: 0 });
+      const revealTimeline = window.gsap.timeline({ onComplete: completeOpening });
+      revealTimeline
+        .fromTo(invitation, { autoAlpha: 0, y: 18 }, {
+          autoAlpha: 1, y: 0, duration: 0.48, ease: "power2.out"
+        }, 0)
+        .fromTo("#invitation .hero-arch, #invitation .hero-corner, #invitation .hero-bottom-mark", {
+          autoAlpha: 0
+        }, {
+          autoAlpha: 1, duration: 0.4, ease: "power1.out"
+        }, 0.12)
+        .fromTo("#invitation .hero-prayer, #invitation .gold-rule, #invitation .hero-welcome", {
+          autoAlpha: 0, y: 10
+        }, {
+          autoAlpha: 1, y: 0, duration: 0.35, stagger: 0.05, ease: "power1.out"
+        }, "-=0.08")
+        .fromTo(".couple-person--left .couple-name", { autoAlpha: 0, y: 16 }, {
+          autoAlpha: 1, y: 0, duration: 0.4, ease: "power2.out"
+        })
         .fromTo(".couple-divider", { autoAlpha: 0, scale: 0.94 }, {
           autoAlpha: 1, scale: 1, duration: 0.3, ease: "power2.out"
         }, "-=0.1")
@@ -166,9 +205,16 @@
         .fromTo(".invitation-message, .hero-support, .text-link", { autoAlpha: 0, y: 8 }, {
           autoAlpha: 1, y: 0, duration: 0.35, stagger: 0.08, ease: "power1.out"
         }, "-=0.05");
+      document.documentElement.classList.remove("invitation-gated");
+    } else {
+      document.documentElement.classList.remove("invitation-gated");
+      document.body.classList.remove("intro-active");
+      if (reducedMotion) {
+        completeOpening();
+      } else {
+        window.setTimeout(completeOpening, 780);
+      }
     }
-    document.querySelector("#couple-names").focus({ preventScroll: true });
-    window.setTimeout(() => intro.remove(), 500);
   }
 
   function animateIntro() {
@@ -211,6 +257,7 @@
     if (reducedMotion) {
       finishOpening();
     } else if (window.gsap) {
+      document.documentElement.classList.add("has-gsap");
       const timeline = window.gsap.timeline({ onComplete: finishOpening });
       timeline.to(openButton, { scale: 0.97, autoAlpha: 0, duration: 0.24, ease: "power2.in" }, 0)
         .to(intro.querySelectorAll(".intro-ornament"), { autoAlpha: 0, duration: 0.35 }, 0)
