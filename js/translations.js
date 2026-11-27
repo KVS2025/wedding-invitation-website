@@ -6,7 +6,7 @@
       "meta.ogDescription": "Two hearts, two families, and a beautiful journey beginning as one. Join Abhishek and Triya for their wedding celebration in Mumbai.",
       "language.label": "Choose language",
       "a11y.skip": "Skip to invitation",
-      prayer: "|| Shri Sankheshwar Parshwanathaya Namah ||",
+      prayer: "|| Shri Shankheshwar Parshwanathaya Namah ||",
       "intro.kicker": "A celebration of love & togetherness",
       "intro.line1": "Together with our families,",
       "intro.line2": "we invite you to celebrate",
