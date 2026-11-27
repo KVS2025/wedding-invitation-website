@@ -158,6 +158,7 @@
 
   function completeOpening() {
     invitation.removeAttribute("inert");
+    document.body.classList.remove("intro-active");
     document.querySelector("#couple-names").setAttribute("tabindex", "-1");
     document.querySelector("#couple-names").focus({ preventScroll: true });
     window.setTimeout(() => intro.remove(), 500);
