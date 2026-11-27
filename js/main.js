@@ -10,8 +10,9 @@
   const galleryPhotos = [
     { src: "assets/images/DSC02064.jpg", width: 1152, height: 768, objectPosition: "50% 50%", alt: "gallery.photo1" },
     { src: "assets/images/DSC02373.jpg", width: 1152, height: 768, objectPosition: "52% 55%", alt: "gallery.photo2" },
-    { src: "assets/images/DSC02645-closeup.png", width: 853, height: 768, objectPosition: "50% 50%", alt: "gallery.photo3" },
-    { src: "assets/images/DSC01453.jpg", width: 1152, height: 768, objectPosition: "54% 54%", alt: "gallery.photo4" }
+    { src: "assets/images/couple-roadway.png", width: 773, height: 768, objectPosition: "50% 50%", alt: "gallery.photo3" },
+    { src: "assets/images/DSC02645-closeup.png", width: 853, height: 768, objectPosition: "50% 50%", alt: "gallery.photo4" },
+    { src: "assets/images/DSC01453.jpg", width: 1152, height: 768, objectPosition: "54% 54%", alt: "gallery.photo5" }
   ];
   const numberFormatters = {
     en: new Intl.NumberFormat("en-IN", { useGrouping: false }),
