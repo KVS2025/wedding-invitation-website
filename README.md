@@ -21,6 +21,6 @@ Then open `http://localhost:8000`.
 
 The countdown targets midnight at UTC+05:30 on 13 December 2026 and stays visible below the heart-shaped scratch-to-reveal invitation. The date can be revealed with pointer scratching or the accessible tap button; the revealed state lasts for the current browser session.
 
-The opening chime is generated only after the visitor taps the invitation button. No background music is included.
+The opening chime and the looping instrumental background music start only after the visitor taps the invitation button. Guests can pause or resume the music with the floating control in the top-right corner.
 
 The map uses a public Google Maps embed and the supplied directions link.

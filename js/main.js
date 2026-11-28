@@ -108,9 +108,12 @@
 
   const intro = document.querySelector("#door-intro");
   const openButton = document.querySelector("#open-invitation");
+  const backgroundMusic = document.querySelector("#background-music");
+  const musicControl = document.querySelector("#music-control");
   const doorPanels = intro.querySelectorAll(".door");
   const doorLight = intro.querySelector(".door-light");
   const invitation = document.querySelector("#invitation");
+  backgroundMusic.loop = true;
   const openingRevealTargets = [
     "#invitation .hero-arch",
     "#invitation .hero-corner",
@@ -129,6 +132,42 @@
   ].join(", ");
   let opened = false;
   let openingFinished = false;
+
+  function updateMusicControl() {
+    const isPlaying = !backgroundMusic.paused && !backgroundMusic.ended;
+    musicControl.classList.toggle("is-playing", isPlaying);
+    musicControl.setAttribute("aria-pressed", String(isPlaying));
+    musicControl.setAttribute("aria-label", getTranslation(isPlaying ? "music.pause" : "music.play"));
+  }
+
+  function playBackgroundMusic() {
+    try {
+      const playback = backgroundMusic.play();
+      if (playback && typeof playback.catch === "function") {
+        playback.catch((error) => {
+          updateMusicControl();
+          console.warn("The background music could not be played.", error);
+        });
+      }
+    } catch (error) {
+      updateMusicControl();
+      console.warn("The background music could not be played.", error);
+    }
+  }
+
+  backgroundMusic.addEventListener("play", updateMusicControl);
+  backgroundMusic.addEventListener("pause", updateMusicControl);
+  backgroundMusic.addEventListener("error", () => {
+    console.warn("The background music could not be loaded.", backgroundMusic.error);
+    updateMusicControl();
+  });
+  musicControl.addEventListener("click", () => {
+    if (backgroundMusic.paused) {
+      playBackgroundMusic();
+    } else {
+      backgroundMusic.pause();
+    }
+  });
 
   function playWelcomeChime() {
     const AudioContext = window.AudioContext || window.webkitAudioContext;
@@ -157,6 +196,7 @@
   }
 
   function completeOpening() {
+    musicControl.hidden = false;
     invitation.removeAttribute("inert");
     document.body.classList.remove("intro-active");
     document.querySelector("#couple-names").setAttribute("tabindex", "-1");
@@ -240,6 +280,7 @@
     opened = true;
     openButton.disabled = true;
     openButton.setAttribute("aria-busy", "true");
+    playBackgroundMusic();
     playWelcomeChime();
     window.dispatchEvent(new CustomEvent("wedding:invitation-open"));
     if (!window.gsap && !reducedMotion) {
