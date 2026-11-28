@@ -608,8 +608,9 @@ html[lang="gu"] .open-invitation { margin-top: clamp(1.5rem, 5vh, 2.5rem); }
   -webkit-tap-highlight-color: transparent;
 }
 .music-control[hidden] { display: none; }
-.music-control svg { width: 21px; height: 21px; overflow: visible; fill: currentColor; }
-.music-control .music-slash { fill: none; stroke: var(--rose-gold); stroke-linecap: round; stroke-width: 1.8; }
+.music-control svg { width: 25px; height: 25px; overflow: visible; fill: currentColor; }
+.music-control .music-note { fill: url(#music-note-gradient); }
+.music-control .music-slash { fill: none; stroke: var(--berry); stroke-linecap: round; stroke-width: 2; }
 .music-control.is-playing .music-slash { opacity: 0; }
 .music-control.is-playing .music-note { transform-box: fill-box; transform-origin: center; animation: music-note-sway 1.8s ease-in-out infinite; }
 .music-control:focus-visible { outline: 2px solid var(--rose-gold); outline-offset: 3px; }
@@ -757,5 +758,59 @@ html[lang="gu"] .family-message { color: var(--plum); }
 @media (max-width: 390px) {
   .language-option { min-width: 72px; }
   .scratch-card { width: min(88vw, 340px); }
+}
+
+@media (max-width: 767.98px) {
+  .timeline { margin-top: 2rem; }
+  .timeline::before { top: .72rem; bottom: 1.8rem; left: 8px; }
+  .event {
+    min-height: 0;
+    grid-template-columns: minmax(0, 1fr);
+    column-gap: 0;
+    padding: 0 0 1.6rem 32px;
+  }
+  .event-marker { top: .19rem; left: -.5px; }
+  .event-time {
+    max-width: 100%;
+    margin: 0 0 .25rem;
+    font-size: clamp(.9rem, 3.8vw, 1.05rem);
+    line-height: 1.55;
+    text-align: left;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+  .event-time--lunch { align-items: flex-start; }
+  .event-copy { min-width: 0; }
+  .event-copy h3 {
+    margin-bottom: .35rem;
+    font-size: clamp(1.15rem, 4.8vw, 1.4rem);
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+  }
+  .event-copy p {
+    max-width: none;
+    margin-bottom: 0;
+    overflow-wrap: anywhere;
+  }
+  html[lang="gu"] .timeline::before { top: .72rem; bottom: 1.8rem; left: 8px; }
+  html[lang="gu"] .event {
+    min-height: 0;
+    grid-template-columns: minmax(0, 1fr);
+    column-gap: 0;
+    padding: 0 0 1.6rem 32px;
+  }
+  html[lang="gu"] .event-marker { top: .19rem; left: -.5px; }
+  html[lang="gu"] .event-time {
+    font-size: clamp(.9rem, 3.8vw, 1.05rem);
+    line-height: 1.55;
+    text-align: left;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+  html[lang="gu"] .event-copy h3 {
+    font-size: clamp(1.15rem, 4.8vw, 1.4rem);
+    line-height: 1.55;
+  }
+  html[lang="gu"] .event-copy p { overflow-wrap: anywhere; }
 }
 

@@ -60,7 +60,13 @@
     </nav>
     <button class="music-control" id="music-control" type="button" data-i18n-aria-label="music.play" aria-label="Play background music" aria-pressed="false" hidden>
       <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-        <path class="music-note" d="M14 4v11.2a3.3 3.3 0 1 1-1.6-2.85V7.1l7-1.7v8.8a3.3 3.3 0 1 1-1.6-2.85V3.4L14 4Z" />
+        <defs>
+          <linearGradient id="music-note-gradient" x1="0" y1="1" x2="1" y2="0">
+            <stop offset="0" stop-color="#E9A1AD" />
+            <stop offset="1" stop-color="#B97878" />
+          </linearGradient>
+        </defs>
+        <path class="music-note" d="M12 3v12.55A4 4 0 1 1 10 11.55V7l10-2v10.55a4 4 0 1 1-2-3.45V3z" />
         <path class="music-slash" d="m4 4 16 16" />
       </svg>
     </button>
