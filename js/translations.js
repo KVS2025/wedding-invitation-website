@@ -85,7 +85,7 @@
       "footer.heading": "With Love, Joy & Blessings",
       "footer.family": "Dhanlaxmiben Mohanlal Sheth Family",
       "footer.closing": "Looking forward to celebrating with you!",
-      "footer.mark": "ABHISHEK & TRIYA · 13.12.2026"
+      "footer.mark": "TRIYA & ABHISHEK · 13.12.2026"
     },
     gu: {
       "meta.pageTitle": "અભિષેક અને ટ્રિયા | લગ્નનું આમંત્રણ",
